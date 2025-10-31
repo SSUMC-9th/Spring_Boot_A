@@ -2,6 +2,7 @@ package com.example.foodmaster.domain.store.entity;
 
 import com.example.foodmaster.domain.address.entity.DetailAddress;
 import com.example.foodmaster.domain.mission.entity.Mission;
+import com.example.foodmaster.domain.review.entity.Review;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -32,4 +33,7 @@ public class Store {
 
     @OneToMany(mappedBy = "store")
     List<Mission> missionList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "store")
+    List<Review> reviewList = new ArrayList<>();
 }

@@ -16,15 +16,15 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     // 홈 화면 쿼리
     @Query("""
         select new com.example.foodmaster.domain.member.dto.HomeDTO(mem, m)
-        from Mission m
+        from Member mem
+        join MemberMission mm on mm.member = mem
+        join Mission m on mm.mission = m
         join m.store s
-        join MemberMission mm on mm.mission = m
-        join Member mem on mm.member = mem
         where mem.id = :memberId
         and s.detailAddress.id = mem.detailAddress.id
         and mm.isCompleted = false
 """)
-    Page<HomeDTO> MemberHome(
+    Page<HomeDTO> findMemberHomePage(
             @Param("memberId") Long memberId,
             Pageable pageable
     );
