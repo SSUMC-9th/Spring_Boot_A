@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-public interface ReviewJpaRepository extends JpaRepository<Review, Long> {
+public interface ReviewJpaRepository extends JpaRepository<Review, Long>, ReviewQueryDsl{
 
     // 1-1. 특정 가게 리뷰 목록 (사진/답글까지 한 번에 로딩)
     @EntityGraph(attributePaths = {"user", "photos", "replies"})
