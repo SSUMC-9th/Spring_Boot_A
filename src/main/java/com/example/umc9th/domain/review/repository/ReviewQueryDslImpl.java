@@ -25,8 +25,8 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
 
         return queryFactory
                 .selectFrom(review)
-                .join(review.store, store) // 가게명 필터링을 위해 Store 테이블과 조인 명시
-                .where(predicate)
+                .join(review.store, store).fetchJoin() // 성능 최적화를 위한 Fetch Join // 가게명 필터링을 위해 Store 테이블과 조인 명시
+                .where(predicate) // Service에서 받은 동적 조건 적용
                 .orderBy(review.createdAt.desc()) // 최신순 정렬 추가
                 .fetch();
     }

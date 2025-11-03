@@ -1,5 +1,3 @@
-// src/main/java/.../domain/review/service/ReviewQueryService.java
-
 package com.example.umc9th.domain.review.service;
 
 import com.example.umc9th.domain.review.dto.ReviewSearchCondition; // DTO import
