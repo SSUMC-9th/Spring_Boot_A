@@ -6,6 +6,8 @@ import com.example.foodmaster.domain.member.entity.mapping.MemberMission;
 import com.example.foodmaster.domain.member.entity.mapping.MemberTerm;
 import com.example.foodmaster.domain.member.enums.Gender;
 import com.example.foodmaster.domain.member.enums.LoginType;
+import com.example.foodmaster.domain.review.entity.Review;
+import com.example.foodmaster.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,7 +21,7 @@ import java.util.List;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @Table(name = "member")
-public class Member {
+public class Member extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,16 +52,19 @@ public class Member {
     @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "member",fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "member",cascade = CascadeType.REMOVE)
     private List<MemberFood> memberFoodList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
     private List<MemberTerm> memberTermList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
     private List<MemberMission> memberMissionList = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "detail_address_id")
     private DetailAddress detailAddress;
+
+    @OneToMany(mappedBy = "member")
+    private List<Review> reviewList = new ArrayList<>();
 }

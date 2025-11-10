@@ -22,7 +22,7 @@ public class Address {
     @Column(name = "address_line", nullable = false)
     private String addressLine;
 
-    @OneToMany(mappedBy = "address",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "address", cascade = CascadeType.REMOVE)
     private List<DetailAddress> detailAddressList = new ArrayList<>();
 
 }

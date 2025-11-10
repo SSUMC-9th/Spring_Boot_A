@@ -1,6 +1,7 @@
 package com.example.foodmaster.domain.mission.entity;
 
 import com.example.foodmaster.domain.member.entity.mapping.MemberMission;
+import com.example.foodmaster.domain.store.entity.Store;
 import com.example.foodmaster.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -22,14 +23,18 @@ public class Mission extends BaseEntity {
     private Long id;
 
     @Column(name = "goal", nullable = false)
-    private String Goal;
+    private String goal;
 
     @Column(name = "award")
-    private int award;
+    private Double award;
 
     @Column(name = "deadline", nullable = false)
     private LocalDate deadline;
 
     @OneToMany(mappedBy = "mission",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<MemberMission> memberMissionList = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "store_id")
+    private Store store;
 }
