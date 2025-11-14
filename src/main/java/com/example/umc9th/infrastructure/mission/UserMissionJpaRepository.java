@@ -3,7 +3,9 @@ package com.example.umc9th.infrastructure.mission;
 import com.example.umc9th.application.mission.dto.MissionCardDto;
 import com.example.umc9th.application.mission.dto.MyMissionRowDto;
 import com.example.umc9th.application.mission.dto.ReviewTargetDto;
+import com.example.umc9th.domain.mission.Mission;
 import com.example.umc9th.domain.mission.UserMission;
+import com.example.umc9th.domain.user.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,6 +14,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface UserMissionJpaRepository extends JpaRepository<UserMission, Long> {
+
+    // 이미 해당 미션 도전 중인지 체크
+    boolean existsByUserAndMission(User user, Mission mission);
 
     // 3-1 내 미션 카드
     @org.springframework.data.jpa.repository.Query(
