@@ -2,6 +2,7 @@ package com.example.umc9th.domain.mission.entity.mapping;
 
 import com.example.umc9th.domain.member.entity.Member;
 import com.example.umc9th.domain.mission.entity.Mission;
+import com.example.umc9th.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,7 +12,7 @@ import lombok.*;
 @Builder
 @Getter
 @Table(name = "member_mission")
-public class UserMission {
+public class UserMission extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

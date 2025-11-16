@@ -33,4 +33,6 @@ public class ApiResponse<T> {
     public static <T> ApiResponse<T> onFailure(BaseErrorCode code, T result) {
         return new ApiResponse<>(false, code.getCode(), code.getMessage(), result);
     }
+
+
 }

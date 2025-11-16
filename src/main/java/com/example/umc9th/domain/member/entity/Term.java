@@ -15,7 +15,8 @@ public class Term {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    // TermName Enum의 최대 문자열 길이를 고려하여 VARCHAR(50)으로 설정 (예시)
     @Enumerated(EnumType.STRING)
+    @Column(name = "name", nullable = false, columnDefinition = "VARCHAR(50)")
     private TermName name;
 }
