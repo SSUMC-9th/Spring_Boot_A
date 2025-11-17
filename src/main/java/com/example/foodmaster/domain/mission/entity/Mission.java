@@ -1,6 +1,6 @@
 package com.example.foodmaster.domain.mission.entity;
 
-import com.example.foodmaster.domain.member.entity.mapping.MemberMission;
+import com.example.foodmaster.domain.membermission.entity.MemberMission;
 import com.example.foodmaster.domain.store.entity.Store;
 import com.example.foodmaster.global.entity.BaseEntity;
 import jakarta.persistence.*;

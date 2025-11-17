@@ -1,4 +1,4 @@
-package com.example.foodmaster.domain.member.entity.mapping;
+package com.example.foodmaster.domain.membermission.entity;
 
 import com.example.foodmaster.domain.member.entity.Member;
 import com.example.foodmaster.domain.mission.entity.Mission;

@@ -2,7 +2,7 @@ package com.example.foodmaster.domain.member.entity;
 
 import com.example.foodmaster.domain.address.entity.DetailAddress;
 import com.example.foodmaster.domain.member.entity.mapping.MemberFood;
-import com.example.foodmaster.domain.member.entity.mapping.MemberMission;
+import com.example.foodmaster.domain.membermission.entity.MemberMission;
 import com.example.foodmaster.domain.member.entity.mapping.MemberTerm;
 import com.example.foodmaster.domain.member.enums.Gender;
 import com.example.foodmaster.domain.member.enums.LoginType;
