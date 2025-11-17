@@ -1,4 +1,4 @@
-package com.example.umc9th.domain.store.controller;
+package com.example.umc9th.domain.review.controller;
 
 import com.example.umc9th.domain.review.dto.ReviewRequestDTO;
 import com.example.umc9th.domain.review.dto.ReviewResponseDTO;

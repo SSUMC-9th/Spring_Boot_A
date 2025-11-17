@@ -1,4 +1,4 @@
-package com.example.umc9th.domain.store.controller;
+package com.example.umc9th.domain.mission.controller;
 
 import com.example.umc9th.domain.mission.dto.MissionResponseDTO;
 import com.example.umc9th.domain.mission.service.MissionCommandService;
