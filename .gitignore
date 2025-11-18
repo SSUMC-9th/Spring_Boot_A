@@ -53,3 +53,12 @@ bin/
 /build/generated/
 
 HELP.md
+
+# ---------------------------------------------------------------- #
+#                  4. 보안 및 로컬 환경 설정 무시                   #
+# ---------------------------------------------------------------- #
+# 로컬 개발 환경 또는 민감 정보 포함 파일 무시
+# (예시: application.properties/yml 중 로컬 전용 파일)
+application-local.properties
+application-local.yml
+*.env
