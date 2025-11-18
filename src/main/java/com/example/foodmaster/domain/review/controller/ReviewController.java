@@ -1,10 +1,15 @@
 package com.example.foodmaster.domain.review.controller;
 
+import com.example.foodmaster.domain.review.dto.ReviewReqDTO;
+import com.example.foodmaster.domain.review.dto.ReviewResDTO;
 import com.example.foodmaster.domain.review.entity.Review;
 import com.example.foodmaster.domain.review.service.ReviewService;
+import com.example.foodmaster.global.apiPayLoad.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;

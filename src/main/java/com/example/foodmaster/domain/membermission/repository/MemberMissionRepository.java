@@ -1,7 +1,7 @@
-package com.example.foodmaster.domain.member.repository;
+package com.example.foodmaster.domain.membermission.repository;
 
 import com.example.foodmaster.domain.member.entity.Member;
-import com.example.foodmaster.domain.member.entity.mapping.MemberMission;
+import com.example.foodmaster.domain.membermission.entity.MemberMission;
 import com.example.foodmaster.domain.mission.entity.Mission;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,4 +19,5 @@ public interface MemberMissionRepository extends JpaRepository<MemberMission, Lo
     @Query("select mm.mission from MemberMission mm where mm.member = :member and mm.isCompleted=false ")
     Page<Mission> findNotCompletedMissionsByMember(@Param("member") Member member, Pageable pageable);
 
+    Boolean existsByMemberAndMission(Member member, Mission mission);
 }
