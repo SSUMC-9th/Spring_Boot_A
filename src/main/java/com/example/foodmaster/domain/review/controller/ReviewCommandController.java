@@ -1,41 +1,42 @@
 package com.example.foodmaster.domain.review.controller;
 
-import com.example.foodmaster.domain.review.dto.ReviewReqDTO;
-import com.example.foodmaster.domain.review.dto.ReviewResDTO;
 import com.example.foodmaster.domain.review.entity.Review;
 import com.example.foodmaster.domain.review.service.ReviewService;
-import com.example.foodmaster.global.apiPayLoad.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-public class ReviewController {
+public class ReviewCommandController {
 
     private final ReviewService reviewService;
 
     @GetMapping("/reviews/search")
-    public List<Review> searchReview(
+    public String searchReview(
             @RequestParam String query,
-            @RequestParam String type
+            @RequestParam String type,
+            Model model
     ) {
         List<Review> result = reviewService.searchReview(query, type);
-        return result;
+        model.addAttribute("result", result);
+        return null;
     }
 
-    @GetMapping("/reviews/{userid}")
+    @GetMapping("/reviews/members/{memberId}")
     public List<Review> searchMyReview(
-            @RequestParam(required = false) Long memberId,
+            @PathVariable Long memberId,
             @RequestParam(required = false) Long storeId,
-            @RequestParam(required = false) Double star
+            @RequestParam(required = false) Double star,
+            Model model
     ) {
         List<Review> reviewList = reviewService.searchMyReview(memberId, storeId, star);
-        return reviewList;
+        model.addAttribute("reviewList", reviewList);
+        return null;
     }
 }

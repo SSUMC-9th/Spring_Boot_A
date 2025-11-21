@@ -11,7 +11,7 @@ public enum ReviewSuccessCode implements BaseSuccessCode {
 
     FOUND(HttpStatus.OK,
             "MEMBER200_1",
-            "성공적으로 리뷰를 저장했습니다."),
+            "성공적으로 리뷰를 찾았습니다."),
     ;
 
     private final HttpStatus status;
