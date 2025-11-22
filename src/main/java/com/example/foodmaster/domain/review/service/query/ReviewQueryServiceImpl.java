@@ -1,5 +1,9 @@
 package com.example.foodmaster.domain.review.service.query;
 
+import com.example.foodmaster.domain.member.entity.Member;
+import com.example.foodmaster.domain.member.exception.MemberException;
+import com.example.foodmaster.domain.member.exception.code.MemberErrorCode;
+import com.example.foodmaster.domain.member.repository.MemberRepository;
 import com.example.foodmaster.domain.review.converter.ReviewConverter;
 import com.example.foodmaster.domain.review.dto.ReviewResDTO;
 import com.example.foodmaster.domain.review.entity.Review;
@@ -19,6 +23,7 @@ public class ReviewQueryServiceImpl implements ReviewQueryService {
 
     private final StoreRepository storeRepository;
     private final ReviewRepository reviewRepository;
+    private final MemberRepository memberRepository;
 
     @Override
     public ReviewResDTO.ReviewPreViewListDTO findReview(
@@ -29,6 +34,20 @@ public class ReviewQueryServiceImpl implements ReviewQueryService {
 
         PageRequest pageRequest = PageRequest.of(page, 5);
         Page<Review> result = reviewRepository.findAllByStore(store, pageRequest);
+
+        return ReviewConverter.toReviewPreviewListDTO(result);
+    }
+
+    @Override
+    public ReviewResDTO.ReviewPreViewListDTO findReview(
+            Long memberId, Integer page
+    ) {
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new MemberException(MemberErrorCode.NOT_FOUND));
+
+
+        PageRequest pageRequest = PageRequest.of(page, 5);
+        Page<Review> result = reviewRepository.findAllByMember(member, pageRequest);
 
         return ReviewConverter.toReviewPreviewListDTO(result);
     }

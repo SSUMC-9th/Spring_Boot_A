@@ -1,7 +1,7 @@
 package com.example.foodmaster.domain.member.controller;
 
-import com.example.foodmaster.domain.member.dto.MemberReqDTO;
-import com.example.foodmaster.domain.member.dto.MemberResDTO;
+import com.example.foodmaster.domain.member.dto.join.MemberReqDTO;
+import com.example.foodmaster.domain.member.dto.join.MemberResDTO;
 import com.example.foodmaster.domain.member.exception.code.MemberSuccessCode;
 import com.example.foodmaster.domain.member.service.command.MemberCommandService;
 import com.example.foodmaster.global.apiPayLoad.ApiResponse;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-public class MemberController {
+public class MemberQueryController {
 
     private final MemberCommandService memberCommandService;
 

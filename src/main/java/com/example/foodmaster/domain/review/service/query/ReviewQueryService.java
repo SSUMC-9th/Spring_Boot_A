@@ -8,4 +8,8 @@ public interface ReviewQueryService {
     ReviewResDTO.ReviewPreViewListDTO findReview(
             String storeName, Integer page
     );
+
+    ReviewResDTO.ReviewPreViewListDTO findReview(
+            Long memberId, Integer page
+    );
 }

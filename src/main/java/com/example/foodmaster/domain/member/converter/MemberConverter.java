@@ -1,7 +1,7 @@
 package com.example.foodmaster.domain.member.converter;
 
-import com.example.foodmaster.domain.member.dto.MemberReqDTO;
-import com.example.foodmaster.domain.member.dto.MemberResDTO;
+import com.example.foodmaster.domain.member.dto.join.MemberReqDTO;
+import com.example.foodmaster.domain.member.dto.join.MemberResDTO;
 import com.example.foodmaster.domain.member.entity.Member;
 import lombok.Builder;
 
