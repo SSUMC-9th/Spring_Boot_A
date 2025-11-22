@@ -32,7 +32,7 @@ public class ReviewQueryServiceImpl implements ReviewQueryService {
         Store store = storeRepository.findByName(storeName)
                 .orElseThrow(() -> new StoreException(StoreErrorCode.NOT_FOUND));
 
-        PageRequest pageRequest = PageRequest.of(page, 5);
+        PageRequest pageRequest = PageRequest.of(page, 10);
         Page<Review> result = reviewRepository.findAllByStore(store, pageRequest);
 
         return ReviewConverter.toReviewPreviewListDTO(result);
