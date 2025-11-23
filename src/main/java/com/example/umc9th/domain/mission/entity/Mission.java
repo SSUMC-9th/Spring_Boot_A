@@ -40,7 +40,7 @@ public class Mission {
     private LocalDateTime deadline;
 
     // 6. 미션 조건
-    @Column(name = "condition")
+    @Column(name = "mission_condition")
     private String condition;
 
     // 7. 생성일자 (자동 생성)

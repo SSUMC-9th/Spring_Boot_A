@@ -1,9 +1,11 @@
 package com.example.umc9th.domain.member.entity;
 
+import com.example.umc9th.domain.member.enums.Gender;
 import com.example.umc9th.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -35,6 +37,10 @@ public class Member extends BaseEntity {
     @Column(name = "address")
     private String address;
 
+    // 상세 주소 필드를 추가합니다.
+    @Column(name = "detail_address")
+    private String detailAddress;
+
     // 6. 닉네임
     @Column(name = "nickname")
     private String nickname;
@@ -50,6 +56,14 @@ public class Member extends BaseEntity {
     // 9. 비활성화 일자
     @Column(name = "inactive_date")
     private LocalDateTime inactiveDate;
+
+    // 10. 생년월일 (새로 추가)
+    @Column(name = "birth")
+    private LocalDate birth;
+
+    // 10. 생년월일 (새로 추가)
+    @Column(name = "gender")
+    private Gender gender;
 
 
 }
