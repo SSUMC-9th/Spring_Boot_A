@@ -8,11 +8,12 @@ import jakarta.persistence.*;
 import lombok.*;
 
 
-
 @Entity
-@Builder
 @Getter
+@Builder
 @Table(name = "member_mission")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserMission extends BaseEntity {
 
     @Id
