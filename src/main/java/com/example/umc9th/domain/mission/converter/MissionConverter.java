@@ -92,4 +92,19 @@ public class MissionConverter {
                 .isLast(memberMissions.isLast())
                 .build();
     }
+
+
+    public static MissionResponseDTO.MissionCompleteResultDTO toMissionCompleteResultDTO(UserMission userMission) {
+        Mission mission = userMission.getMission();
+
+        // 무조건 빌더 패턴 사용
+        return MissionResponseDTO.MissionCompleteResultDTO.builder()
+                .userMissionId(userMission.getId())
+                .storeName(mission.getStore().getStoreName())
+                .description(mission.getDescription())
+                .updatedStatus(userMission.getStatus())
+                .completedAt(userMission.getUpdatedAt()) // BaseEntity의 updatedAt을 완료 시점으로 사용 가정
+                .earnedPoint(mission.getPoint())
+                .build();
+    }
 }

@@ -35,5 +35,11 @@ public class UserMission extends BaseEntity {
     @Enumerated(EnumType.STRING) // 이 어노테이션이 있어야 DB에 String으로 저장됩니다.
     private MissionStatus status;
 
+    public void setStatus(MissionStatus missionStatus) {
+
+        this.status = missionStatus;
+
+    }
+
     // ... (기타 필요한 필드)
 }

@@ -6,10 +6,7 @@ import com.example.umc9th.global.apiPayload.ApiResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 public interface MissionControllerDocs {
 
@@ -68,4 +65,28 @@ public interface MissionControllerDocs {
             @Parameter(description = "페이지 번호 (1 이상이어야 함)", example = "1")
             @RequestParam(name = "page") @CheckPage int page // <--- @RequestParam 명시
     );
+
+
+
+    // ====================================================================
+// 4. 미션 진행 완료 상태로 변경 API (PATCH /missions/{memberMissionId}/complete)
+// ====================================================================
+    @Operation(
+            summary = "미션 진행 완료 상태로 변경 API",
+            description = "사용자의 특정 미션(memberMissionId)의 상태를 '진행 완료(COMPLETED)'로 변경하고 결과를 조회합니다."
+    )
+    @ApiResponses({
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "상태 변경 성공"),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "미션 기록을 찾을 수 없음"),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "이미 완료되었거나, 진행 중 상태가 아닐 때")
+    })
+    @PatchMapping("/missions/{memberMissionId}/complete")
+    public ApiResponse<MissionResponseDTO.MissionCompleteResultDTO> completeMission(
+            @Parameter(description = "UserMission ID", example = "1")
+            @PathVariable Long memberMissionId
+    );
+
+
+
+
 }

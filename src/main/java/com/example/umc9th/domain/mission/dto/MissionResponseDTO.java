@@ -82,4 +82,18 @@ public class MissionResponseDTO {
     }
 
 
+    // 진행중인 미션 진행 완료로 바꾸기 API 용
+    // 5. 미션 완료 결과 DTO
+    @Getter
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MissionCompleteResultDTO {
+        private Long userMissionId;
+        private String storeName;
+        private String description;
+        private MissionStatus updatedStatus; // COMPLETED
+        private LocalDateTime completedAt; // 완료 시점 (updatedAt 사용 가정)
+        private Long earnedPoint; // 적립된 포인트
+    }
 }

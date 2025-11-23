@@ -63,4 +63,24 @@ public class MissionController implements MissionControllerDocs {
 
         return ApiResponse.onSuccess(code, response);
     }
+
+
+    // ====================================================================
+    // 4. 미션 진행 완료로 바꾸기 API
+    // 최종 경로: PATCH /missions/{memberMissionId}/complete
+    // ====================================================================
+    @PatchMapping("/missions/{memberMissionId}/complete")
+    public ApiResponse<MissionResponseDTO.MissionCompleteResultDTO> completeMission(
+            @PathVariable Long memberMissionId
+    ) {
+
+        Long hardcodedMemberId = 1L; // 하드 코딩된 Member ID 사용
+
+        // Service 호출 및 상태 변경
+        MissionResponseDTO.MissionCompleteResultDTO result =
+                missionCommandService.completeMission(hardcodedMemberId, memberMissionId);
+
+        // 성공 코드 사용 (HTTP 200 OK)
+        return ApiResponse.onSuccess(MissionSuccessCode.MISSION_COMPLETE_UPDATED, result);
+    }
 }
