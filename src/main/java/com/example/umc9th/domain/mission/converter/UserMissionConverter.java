@@ -4,6 +4,7 @@ import com.example.umc9th.application.mission.dto.UserMissionResDTO;
 import com.example.umc9th.domain.enums.UserMissionStatus;
 import com.example.umc9th.domain.mission.Mission;
 import com.example.umc9th.domain.mission.UserMission;
+import com.example.umc9th.domain.store.Store;
 import com.example.umc9th.domain.user.User;
 
 import java.time.LocalDateTime;

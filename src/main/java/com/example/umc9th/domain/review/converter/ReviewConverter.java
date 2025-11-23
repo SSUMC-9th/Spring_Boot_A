@@ -25,13 +25,12 @@ public class ReviewConverter {
                 .build();
 
         if (dto.photoUrls() != null) {
-            for (String url : dto.photoUrls()) {
-                ReviewPhoto photo = ReviewPhoto.builder()
-                        .review(review)   // 연관관계 주인 설정
-                        .url(url)
-                        .build();
-                review.getPhotos().add(photo); // 양방향 컬렉션 쪽에도 추가
-            }
+            dto.photoUrls().stream()
+                    .map(url -> ReviewPhoto.builder()
+                            .review(review)   // 연관관계 주인 설정
+                            .url(url)
+                            .build())
+                    .forEach(photo -> review.getPhotos().add(photo)); // 양방향 컬렉션에도 추가
         }
 
         return review;

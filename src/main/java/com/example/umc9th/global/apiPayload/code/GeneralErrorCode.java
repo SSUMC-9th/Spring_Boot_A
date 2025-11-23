@@ -3,6 +3,7 @@ package com.example.umc9th.global.apiPayload.code;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatus;
 
 @Getter
 @AllArgsConstructor
@@ -23,6 +24,7 @@ public enum GeneralErrorCode implements BaseErrorCode{
     INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR,
             "COMMON500_1",
             "예기치 않은 서버 에러가 발생했습니다."),
+    INVALID_PAGE(HttpStatus.BAD_REQUEST, "PAGE_001", "page는 1 이상의 정수여야 합니다."),
     ;
 
     private final HttpStatus status;
