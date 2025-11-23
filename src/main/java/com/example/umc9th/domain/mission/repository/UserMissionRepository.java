@@ -4,6 +4,7 @@ import com.example.umc9th.domain.mission.entity.Mission;
 import com.example.umc9th.domain.member.entity.Member;
 import com.example.umc9th.domain.mission.entity.mapping.UserMission; // UserMission import 확인
 
+import com.example.umc9th.domain.mission.enums.MissionStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,4 +20,7 @@ public interface UserMissionRepository extends JpaRepository<UserMission, Long> 
     Page<UserMission> findAllByMemberAndStatus(Member member, String status, Pageable pageable);
 
     List<UserMission> findAllByMemberAndStatusOrderByCreatedAtDesc(Member member, String progress);
+
+    // 특정 멤버가 특정 상태로 진행 중인 미션 목록을 페이징 처리하여 조회
+    Page<UserMission> findAllByMemberIdAndStatus(Long memberId, MissionStatus status, Pageable pageable);
 }

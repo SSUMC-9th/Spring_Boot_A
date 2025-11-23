@@ -1,4 +1,4 @@
-package com.example.umc9th.domain.mission.service;
+package com.example.umc9th.domain.mission.service.command;
 
 import com.example.umc9th.domain.member.repository.MemberRepository;
 import com.example.umc9th.domain.mission.dto.MissionResponseDTO;
