@@ -7,7 +7,7 @@ import com.example.foodmaster.domain.mission.entity.Mission;
 import lombok.Builder;
 
 @Builder
-public class MemberMissionConverter {
+public class MemberMissionCommandConverter {
 
     // Entity -> DTO
     public static MemberMissionResDTO.MemberMissionDTO addDTO(

@@ -12,7 +12,11 @@ public enum MemberMissionSuccessCode implements BaseSuccessCode {
     ADD_COMPLETE(HttpStatus.OK,
             "MEMBER_MISSION200_1",
             "성공적으로 미션을 추가했습니다."),
-    ;
+
+    FOUND(HttpStatus.OK,
+            "MEMBER_MISSION200_1",
+                    "성공적으로 미션을 찾았습니다."),
+            ;
 
     private final HttpStatus status;
     private final String code;

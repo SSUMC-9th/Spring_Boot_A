@@ -4,7 +4,7 @@ import com.example.foodmaster.domain.member.entity.Member;
 import com.example.foodmaster.domain.member.exception.MemberException;
 import com.example.foodmaster.domain.member.exception.code.MemberErrorCode;
 import com.example.foodmaster.domain.member.repository.MemberRepository;
-import com.example.foodmaster.domain.membermission.converter.MemberMissionConverter;
+import com.example.foodmaster.domain.membermission.converter.MemberMissionCommandConverter;
 import com.example.foodmaster.domain.membermission.dto.MemberMissionReqDTO;
 import com.example.foodmaster.domain.membermission.dto.MemberMissionResDTO;
 import com.example.foodmaster.domain.membermission.entity.MemberMission;
@@ -48,7 +48,7 @@ public class MemberMissionCommandServiceImpl implements MemberMissionCommandServ
         }
 
         // converter를 이용해 MemberMission 엔티티 생성
-        MemberMission newMission = MemberMissionConverter.toMemberMission(member, mission);
+        MemberMission newMission = MemberMissionCommandConverter.toMemberMission(member, mission);
 
         // Repository를 이용해 DB에 저장하고 결과 반환
         MemberMission savedMission = memberMissionRepository.save(newMission);

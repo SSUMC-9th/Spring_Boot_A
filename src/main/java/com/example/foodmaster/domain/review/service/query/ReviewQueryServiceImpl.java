@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -26,6 +27,7 @@ public class ReviewQueryServiceImpl implements ReviewQueryService {
     private final MemberRepository memberRepository;
 
     @Override
+    @Transactional(readOnly = true)
     public ReviewResDTO.ReviewPreViewListDTO findReview(
             String storeName, Integer page
     ) {
@@ -39,6 +41,7 @@ public class ReviewQueryServiceImpl implements ReviewQueryService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public ReviewResDTO.ReviewPreViewListDTO findReview(
             Long memberId, Integer page
     ) {
