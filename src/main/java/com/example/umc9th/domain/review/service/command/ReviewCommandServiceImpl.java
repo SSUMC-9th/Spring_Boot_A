@@ -1,4 +1,4 @@
-package com.example.umc9th.domain.review.service;
+package com.example.umc9th.domain.review.service.command;
 
 import com.example.umc9th.domain.member.entity.Member;
 import com.example.umc9th.domain.member.repository.MemberRepository;
