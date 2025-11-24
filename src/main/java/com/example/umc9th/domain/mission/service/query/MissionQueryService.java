@@ -57,6 +57,7 @@ public class MissionQueryService {
     public MissionResponseDTO.MyMissionListDTO getMyInProgressMissions(Long memberId, int page) {
 
         // 1. 회원 존재 여부 검증 (MemberException 사용)
+        //exists로 검증하면 boolean 값만넘어와서 효율적이다..
         memberRepository.findById(memberId)
                 .orElseThrow(() -> new MissionException(MissionErrorCode.MEMBER_NOT_FOUND));
 
@@ -64,6 +65,8 @@ public class MissionQueryService {
 
         // 2. 미션 상태 및 Pageable 객체 생성
         MissionStatus status = MissionStatus.IN_PROGRESS;
+        //프론트엔드에서 받은 page 번호(1부터 시작)를 DB의 0 기반 인덱스로 변환하는 핵심 과정입니다.
+        // 한 페이지에 10개씩 조회, page는 0부터 시작하도록 -1 처리
         Pageable pageable = PageRequest.of(page - 1, 10);
 
         // 3. Repository 호출 (오류 없음)
