@@ -1,6 +1,6 @@
 // src/main/java/.../domain/review/service/ReviewQueryService.java
 
-package com.example.umc9th.domain.review.service;
+package com.example.umc9th.domain.review.service.query;
 
 import com.example.umc9th.domain.review.dto.ReviewSearchCondition; // DTO import
 import com.example.umc9th.domain.review.entity.Review;
@@ -15,13 +15,12 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 import static com.example.umc9th.domain.review.entity.QReview.review;
-import static com.example.umc9th.domain.store.entity.QStore.store;
 
 @Service
 @RequiredArgsConstructor
-public class ReviewQueryService {
+public class ReviewQueryDslService {
 
-    private static final Logger log = LoggerFactory.getLogger(ReviewQueryService.class);
+    private static final Logger log = LoggerFactory.getLogger(ReviewQueryDslService.class);
     private final ReviewQueryDsl reviewRepository;
 
     /**

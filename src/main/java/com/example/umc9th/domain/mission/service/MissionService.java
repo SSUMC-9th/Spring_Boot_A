@@ -42,7 +42,7 @@ public class MissionService {
                 .point(um.getMission().getPoint())
                 .storeName(um.getMission().getStore().getStoreName()) // 조인된 Store 엔티티에서 이름 획득
                 .description(um.getMission().getDescription())
-                .userMissionStatus(um.getStatus())
+                .userMissionStatus(um.getStatus().name())
                 .build());
     }
 }

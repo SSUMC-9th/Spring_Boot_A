@@ -2,16 +2,18 @@ package com.example.umc9th.domain.mission.entity.mapping;
 
 import com.example.umc9th.domain.member.entity.Member;
 import com.example.umc9th.domain.mission.entity.Mission;
+import com.example.umc9th.domain.mission.enums.MissionStatus;
 import com.example.umc9th.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
 
-
 @Entity
-@Builder
 @Getter
+@Builder
 @Table(name = "member_mission")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserMission extends BaseEntity {
 
     @Id
@@ -30,7 +32,14 @@ public class UserMission extends BaseEntity {
 
     // 3. 미션 수행 상태를 저장하는 필드 (예: "PROGRESS", "COMPLETE")
     @Column(name = "status")
-    private String status;
+    @Enumerated(EnumType.STRING) // 이 어노테이션이 있어야 DB에 String으로 저장됩니다.
+    private MissionStatus status;
+
+    public void setStatus(MissionStatus missionStatus) {
+
+        this.status = missionStatus;
+
+    }
 
     // ... (기타 필요한 필드)
 }

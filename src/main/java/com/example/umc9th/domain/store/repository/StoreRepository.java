@@ -16,5 +16,7 @@ public interface StoreRepository extends JpaRepository<Store, Long> {
      List<Store> findAll();
      void delete(Store store);
 
+     Optional<Store> findByStoreName(String storeName);
+
     // 필요하다면 여기에 추가적인 쿼리 메서드나 @Query를 정의합니다.
 }
