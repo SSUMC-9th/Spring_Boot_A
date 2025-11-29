@@ -1,4 +1,4 @@
-package com.example.foodmaster.domain.member.dto;
+package com.example.foodmaster.domain.member.dto.join;
 
 import lombok.Builder;
 

@@ -1,11 +1,8 @@
-package com.example.foodmaster.domain.member.dto;
+package com.example.foodmaster.domain.member.dto.join;
 
-import com.example.foodmaster.domain.address.entity.Address;
 import com.example.foodmaster.domain.address.entity.DetailAddress;
-import com.example.foodmaster.domain.member.entity.Member;
 import com.example.foodmaster.domain.member.entity.mapping.MemberFood;
 import com.example.foodmaster.domain.member.enums.Gender;
-import com.example.foodmaster.domain.mission.entity.Mission;
 import com.example.foodmaster.global.annotation.ExistsFoods;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

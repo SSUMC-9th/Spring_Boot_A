@@ -1,15 +1,13 @@
 package com.example.foodmaster.domain.membermission.converter;
 
-import com.example.foodmaster.domain.member.dto.MemberResDTO;
 import com.example.foodmaster.domain.member.entity.Member;
-import com.example.foodmaster.domain.membermission.dto.MemberMissionReqDTO;
 import com.example.foodmaster.domain.membermission.dto.MemberMissionResDTO;
 import com.example.foodmaster.domain.membermission.entity.MemberMission;
 import com.example.foodmaster.domain.mission.entity.Mission;
 import lombok.Builder;
 
 @Builder
-public class MemberMissionConverter {
+public class MemberMissionCommandConverter {
 
     // Entity -> DTO
     public static MemberMissionResDTO.MemberMissionDTO addDTO(

@@ -1,4 +1,4 @@
-package com.example.foodmaster.domain.review.exception.code;
+package com.example.foodmaster.domain.store.exception.code;
 
 import com.example.foodmaster.global.apiPayLoad.code.BaseSuccessCode;
 import lombok.AllArgsConstructor;
@@ -7,11 +7,11 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 @AllArgsConstructor
-public enum ReviewSuccessCode implements BaseSuccessCode {
+public enum StoreSuccessCode implements BaseSuccessCode {
 
-    FOUND(HttpStatus.OK,
-            "MEMBER200_1",
-            "성공적으로 리뷰를 찾았습니다."),
+    ADD_COMPLETE(HttpStatus.OK,
+            "STORE_1",
+            "성공적으로 가게를 찾았습니다."),
     ;
 
     private final HttpStatus status;

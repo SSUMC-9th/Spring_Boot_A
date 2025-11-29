@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-public class MemberMissionController {
+public class MemberMissionCommandController {
 
     private final MemberMissionCommandService memberMissionCommandService;
 

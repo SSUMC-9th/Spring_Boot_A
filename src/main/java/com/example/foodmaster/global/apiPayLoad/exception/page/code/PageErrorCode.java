@@ -1,4 +1,4 @@
-package com.example.foodmaster.domain.review.exception.code;
+package com.example.foodmaster.global.apiPayLoad.exception.page.code;
 
 import com.example.foodmaster.global.apiPayLoad.code.BaseErrorCode;
 import lombok.AllArgsConstructor;
@@ -7,15 +7,15 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 @AllArgsConstructor
-public enum ReviewErrorCode implements BaseErrorCode {
+public enum PageErrorCode implements BaseErrorCode {
 
-    NOT_FOUND(HttpStatus.NOT_FOUND,
-            "REVIEW404_1",
-            "해당 리뷰를 찾지 못했습니다."
-            )
+    PAGE_NOT_VALID(HttpStatus.BAD_REQUEST,
+            "Page404_1",
+            "페이지는 0 이하일 수 없습니다."),
     ;
 
     private final HttpStatus status;
     private final String code;
     private final String message;
 }
+

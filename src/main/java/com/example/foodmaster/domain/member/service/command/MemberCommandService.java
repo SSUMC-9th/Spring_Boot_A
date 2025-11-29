@@ -1,7 +1,7 @@
 package com.example.foodmaster.domain.member.service.command;
 
-import com.example.foodmaster.domain.member.dto.MemberReqDTO;
-import com.example.foodmaster.domain.member.dto.MemberResDTO;
+import com.example.foodmaster.domain.member.dto.join.MemberReqDTO;
+import com.example.foodmaster.domain.member.dto.join.MemberResDTO;
 
 public interface MemberCommandService {
 

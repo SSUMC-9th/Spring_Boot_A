@@ -3,6 +3,8 @@ package com.example.foodmaster.global.apiPayLoad.handler;
 import com.example.foodmaster.global.apiPayLoad.ApiResponse;
 import com.example.foodmaster.global.apiPayLoad.code.GeneralErrorCode;
 import com.example.foodmaster.global.apiPayLoad.exception.GeneralException;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class GeneralExceptionAdvice {
@@ -53,6 +56,27 @@ public class GeneralExceptionAdvice {
         ApiResponse<Map<String, String>> errorResponse = ApiResponse.onFailure(code, errors);
 
         // 에러 코드, 메시지와 함께 errors를 반환
+        return ResponseEntity.status(code.getStatus()).body(errorResponse);
+    }
+
+    // @RequestParam 등 단일 인자 검증 실패 시 처리
+    @ExceptionHandler(ConstraintViolationException.class)
+    protected ResponseEntity<ApiResponse<Map<String, String>>> handleConstraintViolationException(
+            ConstraintViolationException ex
+    ) {
+        // 검사에 실패한 인자와 그에 대한 메시지를 저장하는 Map
+        Map<String, String> errors = ex.getConstraintViolations().stream()
+                .collect(Collectors.toMap(
+                        violation -> violation.getPropertyPath().toString(), // 실패한 속성 경로
+                        ConstraintViolation::getMessage, // @ValidPage에 정의된 메시지 ("페이지 번호는 1 이상이어야 합니다.")
+                        (existing, replacement) -> existing, // 키 충돌 시 기존 값 유지
+                        HashMap::new // Map 생성
+                ));
+
+        GeneralErrorCode code = GeneralErrorCode.VALID_FAIL; // DTO 검증 실패와 동일한 코드 사용
+        ApiResponse<Map<String, String>> errorResponse = ApiResponse.onFailure(code, errors);
+
+        // 에러 코드, 메시지와 함께 errors를 반환 (400 Bad Request)
         return ResponseEntity.status(code.getStatus()).body(errorResponse);
     }
 }

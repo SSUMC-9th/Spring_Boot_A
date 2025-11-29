@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface MemberMissionRepository extends JpaRepository<MemberMission, Long> {
 
     // 완료한 미션 모음
@@ -20,4 +22,6 @@ public interface MemberMissionRepository extends JpaRepository<MemberMission, Lo
     Page<Mission> findNotCompletedMissionsByMember(@Param("member") Member member, Pageable pageable);
 
     Boolean existsByMemberAndMission(Member member, Mission mission);
+
+    Page<MemberMission> findALlByMember(Member member, Pageable pageable);
 }
