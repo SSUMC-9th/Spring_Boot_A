@@ -3,6 +3,7 @@ package com.example.umc9th.infrastructure.mission;
 import com.example.umc9th.application.mission.dto.MissionCardDto;
 import com.example.umc9th.application.mission.dto.MyMissionRowDto;
 import com.example.umc9th.application.mission.dto.ReviewTargetDto;
+import com.example.umc9th.domain.enums.UserMissionStatus;
 import com.example.umc9th.domain.mission.Mission;
 import com.example.umc9th.domain.mission.UserMission;
 import com.example.umc9th.domain.user.User;
@@ -13,8 +14,13 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Optional;
+
 public interface UserMissionJpaRepository extends JpaRepository<UserMission, Long> {
 
+    Page<UserMission> findByUserIdAndStatus(Long userId, UserMissionStatus status, Pageable pageable);
+
+    Optional<UserMission> findByIdAndUserId(Long id, Long userId);
     // 이미 해당 미션 도전 중인지 체크
     boolean existsByUserAndMission(User user, Mission mission);
 

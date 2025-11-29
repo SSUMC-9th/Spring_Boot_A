@@ -2,6 +2,7 @@ package com.example.umc9th.presentation.review;
 
 import com.example.umc9th.application.review.query.ReviewQueryService;
 import com.example.umc9th.domain.review.Review;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -28,6 +29,7 @@ public class ReviewSearchController {
     }
 
     // 페이징 버전
+    @Operation(summary = "내가 작성한 리뷰 목록 조회")
     @GetMapping("/reviews/search/page")
     public Page<Review> searchReviewPage(
             @RequestHeader("X-USER-ID") Long userId,
