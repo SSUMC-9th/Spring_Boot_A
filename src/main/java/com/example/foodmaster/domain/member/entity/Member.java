@@ -7,6 +7,7 @@ import com.example.foodmaster.domain.member.entity.mapping.MemberTerm;
 import com.example.foodmaster.domain.member.enums.Gender;
 import com.example.foodmaster.domain.member.enums.LoginType;
 import com.example.foodmaster.domain.review.entity.Review;
+import com.example.foodmaster.global.auth.Role;
 import com.example.foodmaster.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -46,8 +47,14 @@ public class Member extends BaseEntity {
     @Column(name = "point")
     private int point;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
+
+    @Column(name = "password", nullable = false)
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @Column(name = "phone_number", nullable = false)
     private String phoneNumber;

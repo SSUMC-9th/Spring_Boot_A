@@ -3,7 +3,9 @@ package com.example.foodmaster.domain.member.dto.join;
 import com.example.foodmaster.domain.address.entity.DetailAddress;
 import com.example.foodmaster.domain.member.entity.mapping.MemberFood;
 import com.example.foodmaster.domain.member.enums.Gender;
+import com.example.foodmaster.domain.member.enums.LoginType;
 import com.example.foodmaster.global.annotation.ExistsFoods;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -15,14 +17,21 @@ public class MemberReqDTO {
     public record JoinDTO(
             @NotBlank
             String name,
+            @Email
+            String email,
+            @NotBlank
+            String password,
             @NotNull
             Gender gender,
             @NotNull
             LocalDate birth,
-            @NotNull
-            DetailAddress detailAddress,
-            @ExistsFoods
-            List<MemberFood> preferFoods
+            @NotBlank String nickName,
+            @NotNull LoginType loginType,
+            @NotBlank String phoneNumber
+//            @NotNull
+//            DetailAddress detailAddress,
+//            @ExistsFoods
+//            List<MemberFood> preferFoods
     ) {}
 
     public record MemberMissionDTO(
