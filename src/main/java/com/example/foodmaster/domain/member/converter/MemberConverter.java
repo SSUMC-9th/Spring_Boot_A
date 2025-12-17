@@ -41,4 +41,12 @@ public class MemberConverter {
                 .point(0)   // int의 기본값
                 .build();
     }
+
+    // 로그인 응답 변환: Member 엔티티와 생성된 토큰을 받아 LoginDTO로 변환
+    public static MemberResDTO.LoginDTO toLoginDTO(Member member, String accessToken) {
+        return MemberResDTO.LoginDTO.builder()
+                .memberId(member.getId())
+                .accessToken(accessToken)
+                .build();
+    }
 }

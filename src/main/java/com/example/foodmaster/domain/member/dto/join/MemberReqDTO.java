@@ -38,4 +38,12 @@ public class MemberReqDTO {
             Long missionId
             // memberId는 인증된 사용자 정보를 사용해 DTO에 포함하지 않는다.
     ) {}
+
+    // 로그인, 글로벌 auth에도 가능
+    public record LoginDTO(
+            @NotBlank
+            String email,
+            @NotBlank
+            String password
+    ){}
 }
