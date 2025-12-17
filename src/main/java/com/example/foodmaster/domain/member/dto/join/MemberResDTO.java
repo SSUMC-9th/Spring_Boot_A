@@ -11,4 +11,11 @@ public class MemberResDTO {
             Long memberId,
             LocalDateTime createAt
     ) {}
+
+    // 로그인 글로벌 auth에도 가능
+    @Builder
+    public record LoginDTO(
+            Long memberId,
+            String accessToken
+    ){}
 }
