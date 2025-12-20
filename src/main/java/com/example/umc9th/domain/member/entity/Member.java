@@ -1,6 +1,7 @@
 package com.example.umc9th.domain.member.entity;
 
 import com.example.umc9th.domain.member.enums.Gender;
+import com.example.umc9th.global.auth.enums.Role;
 import com.example.umc9th.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -30,8 +31,8 @@ public class Member extends BaseEntity {
     private String phoneNumber;
 
     // 4. 이메일
-    @Column(name = "email")
-    private String email;
+//    @Column(name = "email")
+//    private String email;
 
     // 5. 주소
     @Column(name = "address")
@@ -61,9 +62,17 @@ public class Member extends BaseEntity {
     @Column(name = "birth")
     private LocalDate birth;
 
-    // 10. 생년월일 (새로 추가)
     @Column(name = "gender")
     private Gender gender;
 
+
+    @Column(name = "email", nullable = false, unique = true)
+    private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
 }
