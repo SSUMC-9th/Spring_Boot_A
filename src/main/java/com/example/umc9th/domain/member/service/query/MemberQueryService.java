@@ -6,7 +6,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 public interface MemberQueryService {
-    MemberResDTO.LoginDTO login(MemberReqDTO.LoginDTO dto);
+
+     MemberResDTO.LoginDTO login(MemberReqDTO.LoginDTO dto);
+
+
 
     void logout(HttpServletRequest request, HttpServletResponse response);
 }

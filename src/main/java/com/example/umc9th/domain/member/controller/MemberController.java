@@ -44,9 +44,19 @@ public class MemberController {
         return ApiResponse.onSuccess(MemberSuccessCode.LOGIN, memberQueryService.login(dto));
     }
 
+//  // 세션 방식
+//    @GetMapping("/members/me")
+//    public ApiResponse<String> getMyInfo() {
+//        // 세션이 유효하다면 SecurityContextHolder에서 이메일을 가져올 수 있습니다.
+//        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+//        return ApiResponse.onSuccess(MemberSuccessCode.FOUND, "현재 로그인 유저: " + email);
+//    }
+
+
+    //Jwt token 방식
     @GetMapping("/members/me")
     public ApiResponse<String> getMyInfo() {
-        // 세션이 유효하다면 SecurityContextHolder에서 이메일을 가져올 수 있습니다.
+        // JWT 필터가 정상 작동한다면 SecurityContextHolder에서 유저 정보를 가져올 수 있습니다.
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         return ApiResponse.onSuccess(MemberSuccessCode.FOUND, "현재 로그인 유저: " + email);
     }

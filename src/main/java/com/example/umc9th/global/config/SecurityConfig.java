@@ -33,52 +33,51 @@ public class SecurityConfig {
             "/v3/api-docs/**",
     };
 
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http
-//                .authorizeHttpRequests(requests -> requests
-//                        .requestMatchers(allowUris).permitAll()
-//                        .requestMatchers("/admin/**").hasRole("ADMIN")
-//                        .anyRequest().authenticated()
-//                )
-//                // 폼로그인 비활성화
-//                .formLogin(AbstractHttpConfigurer::disable)
-//                // JwtAuthFilter를 UsernamePasswordAuthenticationFilter
-//                .addFilterBefore(jwtAuthFilter(), UsernamePasswordAuthenticationFilter.class)
-//                .csrf(AbstractHttpConfigurer::disable)
-//                .logout(logout -> logout
-//                        .logoutUrl("/logout")
-//                        .logoutSuccessUrl("/login?logout")
-//                        .permitAll()
-//                )
-//                .exceptionHandling(exception -> exception.authenticationEntryPoint(authenticationEntryPoint()))
-//
-//        ;
-//
-//        return http.build();
-//    }
-
-    // SecurityConfig.java 내부
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // 세션 방식 테스트를 위해 비활성화
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers(allowUris).permitAll() // /login, /sign-up 등 허용
+                        .requestMatchers(allowUris).permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
-                // 직접 만든 로그인 API를 사용할 것이므로 기본 폼 로그인은 비활성화하거나
-                // 처리 경로를 다르게 둡니다.
+                // 폼로그인 비활성화
                 .formLogin(AbstractHttpConfigurer::disable)
-                // 직접 만든 컨트롤러(/logout)를 사용하므로 기본 로그아웃 기능은 꺼둡니다.
-                .logout(logout -> logout.disable())
-                .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                // JwtAuthFilter를 UsernamePasswordAuthenticationFilter
+                .addFilterBefore(jwtAuthFilter(), UsernamePasswordAuthenticationFilter.class)
+                .csrf(AbstractHttpConfigurer::disable)
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login?logout")
+                        .permitAll()
                 )
+                .exceptionHandling(exception -> exception.authenticationEntryPoint(authenticationEntryPoint()))
+
         ;
 
         return http.build();
     }
+
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        http
+//                .csrf(csrf -> csrf.disable()) // 세션 방식 테스트를 위해 비활성화
+//                .authorizeHttpRequests(requests -> requests
+//                        .requestMatchers(allowUris).permitAll() // /login, /sign-up 등 허용
+//                        .anyRequest().authenticated()
+//                )
+//                // 직접 만든 로그인 API를 사용할 것이므로 기본 폼 로그인은 비활성화하거나
+//                // 처리 경로를 다르게 둡니다.
+//                .formLogin(AbstractHttpConfigurer::disable)
+//                // 직접 만든 컨트롤러(/logout)를 사용하므로 기본 로그아웃 기능은 꺼둡니다.
+//                .logout(logout -> logout.disable())
+//                .sessionManagement(session -> session
+//                        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+//                )
+//        ;
+//
+//        return http.build();
+//    }
 
     @Bean
     public JwtAuthFilter jwtAuthFilter() {

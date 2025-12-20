@@ -36,20 +36,20 @@ public class MemberConverter {
     }
 
 
-//    //      JWT token 방식
-//    public static MemberResDTO.LoginDTO toLoginDTO(Member member, String accessToken) {
-//        return MemberResDTO.LoginDTO.builder()
-//                .memberId(member.getId())
-//                .accessToken(accessToken)
-//                .build();
-//    }
+    //      JWT token 방식
+    public static MemberResDTO.LoginDTO toLoginDTO(Member member, String accessToken) {
+        return MemberResDTO.LoginDTO.builder()
+                .memberId(member.getId())
+                .accessToken(accessToken)
+                .build();
+    }
 
 
     // 세션 방식
-    public static MemberResDTO.LoginDTO toLoginDTO(Member member) {
-        return MemberResDTO.LoginDTO.builder()
-                .memberId(member.getId())
-                .build();
-    }
+//    public static MemberResDTO.LoginDTO toLoginDTO(Member member) {
+//        return MemberResDTO.LoginDTO.builder()
+//                .memberId(member.getId())
+//                .build();
+//    }
 
 }
