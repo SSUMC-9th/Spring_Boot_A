@@ -6,24 +6,19 @@ import com.example.umc9th.domain.member.exception.code.MemberSuccessCode;
 import com.example.umc9th.domain.member.service.command.MemberCommandService;
 import com.example.umc9th.domain.member.service.query.MemberQueryService;
 import com.example.umc9th.global.apiPayload.ApiResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-//@RestController
-//@RequiredArgsConstructor
-//public class MemberController {
-//
-//    // 회원가입
-//    @PostMapping("/sign-up")
-//    public ApiResponse<MemberResDTO.JoinDTO> signUp(
-//            @RequestBody MemberReqDTO.JoinDTO dto
-//    ){
-//        return null;
-//    }
-//}
+import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
 @RequiredArgsConstructor
@@ -37,7 +32,7 @@ public class MemberController {
     public ApiResponse<MemberResDTO.JoinDTO> signUp(
             @RequestBody @Valid MemberReqDTO.JoinDTO dto
     ){
-        return ApiResponse.onSuccess(MemberSuccessCode.FOUND, memberCommandService.signup(dto));
+        return ApiResponse.onSuccess(MemberSuccessCode.SIGNUP, memberCommandService.signup(dto));
     }
 
 
@@ -46,6 +41,21 @@ public class MemberController {
     public ApiResponse<MemberResDTO.LoginDTO> login(
             @RequestBody @Valid MemberReqDTO.LoginDTO dto
     ){
-        return ApiResponse.onSuccess(MemberSuccessCode.FOUND, memberQueryService.login(dto));
+        return ApiResponse.onSuccess(MemberSuccessCode.LOGIN, memberQueryService.login(dto));
+    }
+
+    @GetMapping("/members/me")
+    public ApiResponse<String> getMyInfo() {
+        // 세션이 유효하다면 SecurityContextHolder에서 이메일을 가져올 수 있습니다.
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        return ApiResponse.onSuccess(MemberSuccessCode.FOUND, "현재 로그인 유저: " + email);
+    }
+
+    //로그아웃
+    @PostMapping("/logout")
+    public ApiResponse<String> logout(HttpServletRequest request, HttpServletResponse response) {
+
+        memberQueryService.logout(request, response);
+        return ApiResponse.onSuccess(MemberSuccessCode.LOGOUT, "로그아웃 성공");
     }
 }

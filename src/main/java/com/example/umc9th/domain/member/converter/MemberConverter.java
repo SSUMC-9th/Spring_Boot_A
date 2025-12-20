@@ -36,11 +36,19 @@ public class MemberConverter {
     }
 
 
+//    //      JWT token 방식
+//    public static MemberResDTO.LoginDTO toLoginDTO(Member member, String accessToken) {
+//        return MemberResDTO.LoginDTO.builder()
+//                .memberId(member.getId())
+//                .accessToken(accessToken)
+//                .build();
+//    }
 
-    public static MemberResDTO.LoginDTO toLoginDTO(Member member, String accessToken) {
+
+    // 세션 방식
+    public static MemberResDTO.LoginDTO toLoginDTO(Member member) {
         return MemberResDTO.LoginDTO.builder()
                 .memberId(member.getId())
-                .accessToken(accessToken)
                 .build();
     }
 
