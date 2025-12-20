@@ -1,5 +1,7 @@
 package com.example.umc9th.domain.member.service;
 
+import com.example.umc9th.domain.member.dto.MemberReqDTO;
+import com.example.umc9th.domain.member.dto.MemberResDTO;
 import com.example.umc9th.domain.member.dto.MyPageResponseDTO;
 import com.example.umc9th.domain.member.entity.Member;
 import com.example.umc9th.domain.member.repository.MemberRepository;
@@ -33,4 +35,5 @@ public class MemberService {
                 .isPhoneVerified(member.getStatus().equals("ACTIVE")) // status 필드를 활용한 인증 상태 추정
                 .build();
     }
+
 }
